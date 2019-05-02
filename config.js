@@ -4,8 +4,9 @@ var net = require('net');
 var config = function () {
   
   this.logFormat = "combined";
-  this.ipcPath = "/Users/govindvaid/Library/Ethereum/geth.ipc";
-  this.provider = new web3.providers.IpcProvider(this.ipcPath, net);
+  // this.ipcPath = "/Users/govindvaid/Library/Ethereum/geth.ipc";
+  // this.provider = new web3.providers.IpcProvider(this.ipcPath, net);
+  this.providerUrl = "wss://mainnet.infura.io/ws";
   
   this.bootstrapUrl = "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css";
   
@@ -17,7 +18,8 @@ var config = function () {
   this.tokenName = "Golem Network Token";
   this.tokenDescription = "Golem Network Token";
   this.tokenTotalSupply = -1;
-    
+  
+  this.exportNewBlockStartFrom = 7680144
   this.exportStartBlock = 0; // Start block for the historic export (set to 0 for a full export)
   
   this.names = {

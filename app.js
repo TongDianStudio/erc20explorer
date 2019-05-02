@@ -12,36 +12,10 @@ var event = require('./routes/event');
 var events = require('./routes/events');
 var search = require('./routes/search');
 
-var config = new(require('./config.js'))();
-var Datastore = require('nedb-core')
-var db = new Datastore({ filename: './data.db', autoload: true });
+var core = require('./core')
 
-db.ensureIndex({ fieldName: 'balance' }, function (err) {
-  if (err) {
-    console.log("Error creating balance db index:", err);
-  }
-});
-
-db.ensureIndex({ fieldName: 'timestamp' }, function (err) {
-  if (err) {
-    console.log("Error creating timestamp db index:", err);
-  }
-});
-
-db.ensureIndex({ fieldName: 'args._from' }, function (err) {
-  if (err) {
-    console.log("Error creating _from db index:", err);
-  }
-});
-
-db.ensureIndex({ fieldName: 'args._to' }, function (err) {
-  if (err) {
-    console.log("Error creating _to db index:", err);
-  }
-});
-
-var exporterService = require('./services/exporter.js');
-var exporter = new exporterService(config, db);
+var config = core.config
+var db = core.db
 
 var app = express();
 
